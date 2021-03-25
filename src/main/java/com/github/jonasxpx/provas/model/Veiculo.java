@@ -1,9 +1,11 @@
 package com.github.jonasxpx.provas.model;
 
+import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 @Builder
@@ -29,4 +31,21 @@ public class Veiculo {
     private Modelo modelo;
 
 
+    @JsonGetter("marca")
+    private Marca jsonMarca() {
+        return Objects.nonNull(marca) ?
+                Marca.builder()
+                        .id(marca.getId())
+                        .nome(marca.getNome())
+                        .build() : null;
+    }
+
+    @JsonGetter("modelo")
+    private Modelo jsonModelo() {
+        return Objects.nonNull(modelo) ?
+                Modelo.builder()
+                        .id(modelo.getId())
+                        .nome(modelo.getNome())
+                        .build() : null;
+    }
 }

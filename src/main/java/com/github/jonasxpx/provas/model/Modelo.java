@@ -1,9 +1,10 @@
 package com.github.jonasxpx.provas.model;
 
+import com.fasterxml.jackson.annotation.JsonGetter;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.Set;
+import java.util.Objects;
 
 @Entity
 @Getter
@@ -23,6 +24,9 @@ public class Modelo {
     @ManyToOne
     private Marca marca;
 
-    @OneToMany(mappedBy = "modelo", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Veiculo> veiculos;
+    @JsonGetter("marca")
+    private Marca jsonMarca() {
+        return Objects.nonNull(marca) ?
+                Marca.builder().id(marca.getId()).build() : null;
+    }
 }
