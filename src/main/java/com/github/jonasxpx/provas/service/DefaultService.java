@@ -1,9 +1,9 @@
 package com.github.jonasxpx.provas.service;
 
+import com.github.jonasxpx.provas.exception.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
 public class DefaultService<M, R extends JpaRepository<M, Long>> {
