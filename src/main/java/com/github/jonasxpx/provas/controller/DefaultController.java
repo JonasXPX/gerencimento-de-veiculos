@@ -38,6 +38,11 @@ public class DefaultController<M, S extends DefaultService<M, ?>>{
         return ResponseEntity.ok(service.persist(entity));
     }
 
+    @DeleteMapping("{id}")
+    public void delete(@PathVariable Long id) {
+        service.delete(id);
+    }
+
     public S getService() {
         return service;
     }

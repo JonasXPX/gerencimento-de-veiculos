@@ -23,10 +23,10 @@ public class Marca {
 
     private String descricao;
 
-    @OneToMany(mappedBy = "marca", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "marca", cascade = CascadeType.ALL)
     private Set<Modelo> modelos;
 
-    @OneToMany(mappedBy = "marca", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "marca", cascade = CascadeType.ALL)
     private Set<Veiculo> veiculos;
 
 }
