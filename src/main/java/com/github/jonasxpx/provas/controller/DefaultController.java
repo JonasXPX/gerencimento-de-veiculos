@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.net.URI;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.springframework.http.ResponseEntity.ok;
 
@@ -28,11 +29,7 @@ public class DefaultController<M, S extends DefaultService<M, ?>>{
 
     @PostMapping
     public ResponseEntity<M> save(@RequestBody M entity) {
-        String[] value = getClass().getAnnotation(RequestMapping.class)
-                .value();
-        System.out.println(Arrays.toString(value));
-
-        return ResponseEntity.created(URI.create("/"))
+        return ResponseEntity.created(URI.create(createUrlString()))
                 .body(service.persist(entity));
     }
 
@@ -44,4 +41,9 @@ public class DefaultController<M, S extends DefaultService<M, ?>>{
     public S getService() {
         return service;
     }
+
+    private String createUrlString() {
+        return String.join("/", getClass().getAnnotation(RequestMapping.class).value());
+    }
+
 }
