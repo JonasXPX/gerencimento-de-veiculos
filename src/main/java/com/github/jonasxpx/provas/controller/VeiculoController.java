@@ -36,4 +36,9 @@ public class VeiculoController extends DefaultController<Veiculo, VeiculoService
         Modelo modelo = modeloService.findById(id);
         return ResponseEntity.ok(getService().findVeiculosByModelo(modelo));
     }
+
+    @GetMapping("by-placa")
+    public ResponseEntity<Veiculo> findVeiculoByPlaca(String placa) {
+        return ResponseEntity.ok(getService().findVeiculoByPlaca(placa));
+    }
 }
