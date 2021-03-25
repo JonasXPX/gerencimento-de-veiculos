@@ -31,7 +31,7 @@ public class VeiculoController extends DefaultController<Veiculo, VeiculoService
         return ResponseEntity.ok(getService().findVeiculosByMarca(marca));
     }
 
-    @GetMapping("my-modelo/{id}")
+    @GetMapping("by-modelo/{id}")
     public ResponseEntity<List<Veiculo>> findVeiculosByModelo(@PathVariable Long id) {
         Modelo modelo = modeloService.findById(id);
         return ResponseEntity.ok(getService().findVeiculosByModelo(modelo));
